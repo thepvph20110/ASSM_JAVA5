@@ -1,0 +1,1 @@
+# ASSM_JAVA5
