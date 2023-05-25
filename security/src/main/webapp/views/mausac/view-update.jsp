@@ -8,15 +8,16 @@
 </head>
 <body>
 <section class="container" style="width: 600px">
-    <form action="/fpoly-shop/mau-sac/update" method="post">
+    <form action="/admin/mau-sac/update" method="post">
+        <input name="id" type="hidden" value="${mauSac.id}">
         <div class="form-floating mb-3">
             <input name="ma" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
-                   value="${mauSac.maMauSac}">
+                   value="${mauSac.ma}">
             <label for="floatingInput">Mã màu</label>
         </div>
         <div class="form-floating">
             <input name="ten" type="text" class="form-control" id="floatingPassword" placeholder="Password"
-                   value="${mauSac.tenMauSac}">
+                   value="${mauSac.ten}">
             <label for="floatingPassword">Tên Màu</label>
         </div>
         <div class="container" style="margin-top: 20px ">

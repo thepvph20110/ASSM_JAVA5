@@ -38,12 +38,17 @@ public class ChiTietSPServiceImpl implements ChiTietSPService {
     }
 
     @Override
+    public void saveChiTietSanPham(ChiTietSanPham chiTietSanPham) {
+        chiTietSPRepository.save(chiTietSanPham);
+    }
+
+    @Override
     public ChiTietSanPham findOneById(String id) {
         return chiTietSPRepository.findById(id).get();
     }
 
     @Override
-    public List<ChiTietSanPham> findAllByNhaSanXuat(String idNSX) {
-        return chiTietSPRepository.findAllByNhaSanXuat(idNSX);
+    public Page<ChiTietSanPham> findAllByNhaSanXuat(String idNSX,Pageable pageable) {
+        return chiTietSPRepository.findAllByNhaSanXuat(idNSX,pageable);
     }
 }

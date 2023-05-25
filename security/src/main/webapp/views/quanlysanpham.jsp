@@ -27,69 +27,101 @@
 </header>
 <br>
 <div class="container">
-    <div class="container" style="width: 500px">
-        <form action="/admin/add" method="post" enctype="multipart/form-data" >
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Tên Sản Phẩm</label>
-                <input type="text" name="ten" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <c:if test="${error.tenError != null}">
-                    <p style="color: red">${error.tenError}</p>
-                </c:if>
-            </div>
-
-            <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Image</label>
-                <input class="form-control" name="image" type="file" id="formFileMultiple" multiple>
-                <c:if test="${error.imgError != null}">
-                    <p style="color: red">${error.imgError}</p>
-                </c:if>
-            </div>
-
-            <div class="mb-3">
-                <label for="exampleInputDescription" class="form-label">Mô Tả</label>
-                <input type="text" name="moTa" class="form-control" id="exampleInputDescription">
-                <c:if test="${error.moTaError != null}">
-                    <p style="color: red">${error.moTaError}</p>
-                </c:if>
-            </div>
-
-            <div class="mb-3">
-                <label for="exampleInputPrice" class="form-label">Giá Bán</label>
-                <input type="text" name="giaBan" class="form-control" id="exampleInputPrice">
-                <c:if test="${error.giaBanError != null}">
-                    <p style="color: red">${error.giaBanError}</p>
-                </c:if>
-            </div>
-
-            <div class="mb-3">
-                <label for="exampleInputAmount" class="form-label">Số Lượng</label>
-                <input type="text" name="soLuongTon" class="form-control" id="exampleInputAmount">
-                <c:if test="${error.soLuongTonError != null}">
-                    <p style="color: red">${error.soLuongTonError}</p>
-                </c:if>
-            </div>
-
+    <div class="container" style="width: 900px">
+        <form action="/admin/add-san-pham" method="post" enctype="multipart/form-data">
+            <img width="200px" height="150px"
+                    src="${empty sp ? "https://www.freeiconspng.com/thumbs/photography-icon-png/photo-album-icon-png-14.png": "/wepapp/img/"+sp.img}"
+                    class="img-fluid rounded-pill"
+                    alt="Townhouses and Skyscrapers"
+            />
             <br>
-            <div class="form-floating">
-                <select class="form-select" name="mauSac" id="floatingSelect" aria-label="Floating label select example">
-                    <c:forEach items="${mauSacs}" var="l">
-                        <option value="${l.ma}">${l.ten}</option>
-                    </c:forEach>
-                </select>
-                <label for="floatingSelect">Màu Sắc</label>
+            <div class="row">
+                <div class="col-6">
+
+                    <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label">Image</label>
+                        <input class="form-control" name="image" type="file" id="formFileMultiple" multiple value="${sp.Img}">
+                        <c:if test="${error.imgError != null}">
+                            <p style="color: red">${error.imgError}</p>
+                        </c:if>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Tên Sản Phẩm</label>
+                        <input type="text" name="ten" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" value="${sp.tenSP}">
+                        <c:if test="${error.tenError != null}">
+                            <p style="color: red">${error.tenError}</p>
+                        </c:if>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="exampleInputDescription" class="form-label">Mô Tả</label>
+                        <input type="text" name="moTa" class="form-control" id="exampleInputDescription" value="${sp.moTa}">
+                        <c:if test="${error.moTaError != null}">
+                            <p style="color: red">${error.moTaError}</p>
+                        </c:if>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPrice" class="form-label">Giá Bán</label>
+                        <input type="text" name="giaBan" class="form-control" id="exampleInputPrice" value="${sp.giaban}">
+                        <c:if test="${error.giaBanError != null}">
+                            <p style="color: red">${error.giaBanError}</p>
+                        </c:if>
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+
+
+                    <div class="mb-3">
+                        <label for="exampleInputAmount" class="form-label">Số Lượng</label>
+                        <input type="text" name="soLuongTon" class="form-control" id="exampleInputAmount" value="${sp.soLuongton}">
+                        <c:if test="${error.soLuongTonError != null}">
+                            <p style="color: red">${error.soLuongTonError}</p>
+                        </c:if>
+                    </div>
+
+                    <div class="row">
+                        <label for="floatingSelect">Màu Sắc</label>
+                        <div class="col-10">
+                            <select class="form-select" name="mauSac" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                <c:forEach items="${mauSacs}" var="l">
+                                    <option ${sp.mauSac.id == l.id ? "selected": ""} value="${l.id}">${l.ten}</option>
+                                </c:forEach>
+                            </select>
+
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-outline-dark" href="/admin/mau-sac/list">+</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label for="floatingSelect">Nhà Sản Xuất</label>
+                        <div class="col-10">
+
+                            <select class="form-select" name="nsx" aria-label="Floating label select example">
+                                <c:forEach items="${nsx}" var="l">
+                                    <option ${sp.nhaSanXuat.id == l.id ? "selected": ""} value="${l.id}">${l.ten}</option>
+                                </c:forEach>
+                            </select>
+
+                        </div>
+                        <div class="col-2">
+                            <a class="btn btn-outline-dark" href="/admin/nha-san-xuat/list">+</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="form-floating">
-                <select class="form-select" name="nsx" aria-label="Floating label select example">
-                    <c:forEach items="${nsx}" var="l">
-                        <option value="${l.ma}">${l.ten}</option>
-                    </c:forEach>
-                </select>
-                <label for="floatingSelect">Nhà Sản Xuất</label>
-            </div>
+
+
             <br>
             <div>
-                <button class="btn btn-success">Add</button>
+                <button class="btn btn-success">${empty sp ? "ADD": "UPDATE"}</button>
             </div>
         </form>
     </div>
@@ -109,7 +141,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${chiTietSanPhams}" var="l" varStatus="status">
+        <c:forEach items="${productPage.content}" var="l" varStatus="status">
             <tr>
                 <th scope="row">${status.index +1 }</th>
                 <td>${l.tenSP}</td>
@@ -119,14 +151,40 @@
                 <td>${l.soLuongTon}</td>
                 <td>
                     <a class="btn btn-danger" href="/admin/delete/${l.id}">Delete</a>
-                    <button onclick="detailProduct('${l.id}')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_update_can_bo">
+                    <a onclick="detailProduct('${l.id}')" type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modal_update_can_bo">
                         Detail
-                    </button>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <%--    <div>--%>
+    <%--        <c:if test="${productPage.totalPages > 1}">--%>
+    <%--            <c:forEach var="i" begin="1" end="${productPage.totalPages}">--%>
+    <%--                <c:url value="/admin/quan-ly-san-pham" var="pageUrl">--%>
+    <%--                    <c:param name="page" value="${i}" />--%>
+    <%--                </c:url>--%>
+    <%--                <a href="${pageUrl}">${i}</a>--%>
+    <%--            </c:forEach>--%>
+    <%--        </c:if>--%>
+    <%--    </div>--%>
+
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+            <c:if test="${productPage.totalPages > 1}">
+                <c:forEach var="i" begin="1" end="${productPage.totalPages}">
+                    <c:url value="/admin/quan-ly-san-pham" var="pageUrl">
+                        <c:param name="page" value="${i-1}"/>
+                    </c:url>
+                    <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+                </c:forEach>
+            </c:if>
+
+        </ul>
+    </nav>
 </div>
 <!-- Modal -->
 <!--  Start Modal Update-->
@@ -199,14 +257,14 @@
                         <label class="col-form-label">Màu Sắc</label>
                         <select id="mauSac" class="form-control col-8">
                             <c:forEach items="${mauSacs}" var="l">
-                                <option value="${l.ma}">${l.ten}</option>
+                                <option value="${l.id}">${l.ten}</option>
                             </c:forEach>
                         </select>
                         <br>
                         <label class="col-form-label">Màu Sắc</label>
                         <select id="nsx" class="form-control col-8">
                             <c:forEach items="${nsx}" var="l">
-                                <option value="${l.ma}">${l.ten}</option>
+                                <option value="${l.id}">${l.ten}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -229,7 +287,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="../js/custom/img.js"></script>
 <script src="../js/custom/quanlysanpham.js"></script>
+<script src="../js/plugin/bootstrap.bundle.min.js"></script>
 </body>
 </html>

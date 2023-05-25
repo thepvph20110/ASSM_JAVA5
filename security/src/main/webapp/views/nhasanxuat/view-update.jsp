@@ -14,7 +14,7 @@
 </head>
 <body>
 <section class="container" style="width: 600px">
-    <form action="/fpoly-shop/nha-san-xuat/update" method="post">
+    <form action="/admin/nha-san-xuat/update" method="post">
         <div class="form-floating mb-3">
             <input name="ma" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
                    value="${nhaSanXuat.ma}">

@@ -9,7 +9,7 @@
 <body>
 <br>
 <section class="container" style="width: 600px">
-    <form action="/fpoly-shop/nha-san-xuat/add" method="post">
+    <form action="/admin/nha-san-xuat/add" method="post">
         <div class="form-floating mb-3">
             <input name="ma" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
                    value="${nhaSanXuat.ma}">
@@ -27,7 +27,7 @@
             </div>
             <div class="col-5">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-info" href="/fpoly-shop/chi-tiet-san-pham/view-add">Back</a>
+                    <a class="btn btn-info" href="/admin/quan-ly-san-pham">Back</a>
                 </div>
             </div>
         </div>
@@ -54,9 +54,8 @@
                 <td>${nhaSanXuat.ma}</td>
                 <td>${nhaSanXuat.ten}</td>
                 <td>
-                    <a href="/fpoly-shop/nha-san-xuat/detail?id=${nhaSanXuat.id}" class="btn btn-success">Detail</a>
-                    <a href="/fpoly-shop/nha-san-xuat/remove?id=${nhaSanXuat.id}" class="btn btn-danger">Remove</a>
-                    <a href="/fpoly-shop/nha-san-xuat/view-update?id=${nhaSanXuat.id}"
+                    <a href="/admin/nha-san-xuat/delete/${nhaSanXuat.id}" class="btn btn-danger">Remove</a>
+                    <a href="/admin/nha-san-xuat/view-update/${nhaSanXuat.id}"
                        class="btn btn-warning">Update</a>
                 </td>
             </tr>

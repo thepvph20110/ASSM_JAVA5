@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface GioHangRepository extends JpaRepository<GioHang, String> {
+
+    GioHang findGioHangByAccount_Username(String username);
+
+
 }

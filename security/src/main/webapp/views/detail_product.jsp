@@ -54,7 +54,7 @@
                 <section class="mb-5">
                     <p class="fs-5 mb-4">${ctsp.moTa}</p>
                 </section>
-                <button onclick="addToCart('${ctsp.id}')" class="btn btn-primary">Add To Cart</button>
+                <a href="/user/detail/${ctsp.id}" class="btn btn-primary">Add To Cart</a>
                 <button onclick="buyNow('${ctsp.id}')" class="btn btn-success">Buy Now</button>
             </article>
             <br>
@@ -137,5 +137,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
+<script src="../js/plugin/bootstrap.bundle.min.js"></script>
+<script src="../js/custom/img.js"></script>
+<script src="../js/custom/quanlysanpham.js"></script>
 </body>
 </html>

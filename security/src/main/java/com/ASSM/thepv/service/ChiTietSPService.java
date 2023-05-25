@@ -18,7 +18,11 @@ public interface ChiTietSPService {
 
     void daleteChiTietSanPham(String id);
 
+    void saveChiTietSanPham(ChiTietSanPham chiTietSanPham);
+
    ChiTietSanPham findOneById(String id);
 
-    List<ChiTietSanPham> findAllByNhaSanXuat( String idNSX);
+    Page<ChiTietSanPham> findAllByNhaSanXuat( String idNSX,Pageable pageable);
+
+
 }

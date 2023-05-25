@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Title</title>
@@ -18,6 +19,9 @@
     <link href="../css/plugin/bootstrap.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<%--    <sec:authentication var="auth">--%>
+<%--        <c:set var="username" value="${auth.principal.username}"/>--%>
+<%--    </sec:authentication>--%>
 </head>
 </head>
 <body>
@@ -46,14 +50,14 @@
                     <h2 class="card-title">Tên Sản Phẩm : ${sp.tenSP} ${sp.nhaSanXuat.ten}</h2>
                     <p class="card-text">Mô Tả : ${sp.moTa}</p>
 
-                    <button onclick="addToCart('${sp.id}')" class="btn btn-primary">Add To Cart</button>
+                    <a href="/user/add-to-cart?idSP=${sp.id}&urlnow=/user/list-san-pham" class="btn btn-primary">Add To Cart</a>
                     <button onclick="buyNow('${sp.id}')" class="btn btn-success">Buy Now</button>
                 </div>
             </div>
             <br>
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
-                <c:forEach items="${list}" var="l">
+                <c:forEach items="${productPage.content}" var="l" varStatus="i">
                     <div class="col-lg-6">
                         <!-- Blog post-->
                         <div class="card mb-4">
@@ -63,7 +67,7 @@
                                 <h2 class="card-title h4">Tên Sản Phẩm : ${l.tenSP} ${l.nhaSanXuat.ten}</h2>
                                 <p class="card-text">Mô Tả : ${l.moTa}</p>
 
-                                <button onclick="addToCart('${l.id}')" class="btn btn-primary">Add To Cart</button>
+                                <a href="/user/add-to-cart?idSP=${l.id}&urlnow=/user/list-san-pham" class="btn btn-primary">Add To Cart</a>
                                 <button onclick="buyNow('${l.id}')" class="btn btn-success">Buy Now</button>
                             </div>
                         </div>
@@ -71,17 +75,17 @@
                 </c:forEach>
             </div>
             <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0"/>
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-                    </li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm">
+                    <c:if test="${productPage.totalPages > 1}">
+                        <c:forEach var="i" begin="1" end="${productPage.totalPages}">
+                            <c:url value="/user/list-san-pham" var="pageUrl">
+                                <c:param name="page" value="${i-1}"/>
+                            </c:url>
+                            <li class="page-item"><a class="page-link" href="${pageUrl}">${i}</a></li>
+                        </c:forEach>
+                    </c:if>
+
                 </ul>
             </nav>
         </div>

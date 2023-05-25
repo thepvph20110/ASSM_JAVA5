@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Shop Giày Siêu Cấp Vip Pro</title>
@@ -17,6 +18,9 @@
     <link href="../css/custom/styles.css" rel="stylesheet"/>
     <!-- includes Bootstrap-->
     <link href="../css/plugin/bootstrap.css" rel="stylesheet"/>
+    <sec:authentication var="auth">
+        <c:set var="username" value="${auth.principal.username}"/>
+    </sec:authentication>
 </head>
 <body>
 <jsp:include page="../layout/header.jsp"/>
@@ -50,9 +54,9 @@
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <button onclick="addToCart('${l.id}')" class="btn btn-success" type="submit">Add To
+                                <a href="/user/add-to-cart?idSP=${l.id}&urlnow=/home/list" class="btn btn-success" type="submit">Add To
                                     Cart
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">

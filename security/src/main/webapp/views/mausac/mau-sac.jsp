@@ -16,15 +16,15 @@
 <body>
 <br>
 <section class="container" style="width: 600px">
-    <form action="/fpoly-shop/mau-sac/add" method="post">
+    <form action="/admin/mau-sac/add" method="post">
         <div class="form-floating mb-3">
-            <input name="maMauSac" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
-                   value="${mauSac.maMauSac}">
+            <input name="ma" type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                   value="${mauSac.ma}">
             <label for="floatingInput">Mã màu</label>
         </div>
         <div class="form-floating">
-            <input name="tenMauSac" type="text" class="form-control" id="floatingPassword" placeholder="Password"
-                   value="${mauSac.tenMauSac}">
+            <input name="ten" type="text" class="form-control" id="floatingPassword" placeholder="Password"
+                   value="${mauSac.ten}">
             <label for="floatingPassword">Tên Màu</label>
         </div>
         <br>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-5">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-info" href="/fpoly-shop/chi-tiet-san-pham/view-add">Back</a>
+                    <a class="btn btn-info" href="/admin/quan-ly-san-pham">Back</a>
                 </div>
             </div>
         </div>
@@ -55,15 +55,15 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${listMauSac}" var="ms" varStatus="i">
+        <c:forEach items="${list}" var="ms" varStatus="i">
             <tr>
                 <th scope="row">${i.index+1}</th>
-                <td>${ms.maMauSac}</td>
-                <td>${ms.tenMauSac}</td>
+                <td>${ms.ma}</td>
+                <td>${ms.ten}</td>
                 <td>
-                    <a href="/fpoly-shop/mau-sac/detail?id=${ms.id}" class="btn btn-success">Detail</a>
-                    <a href="/fpoly-shop/mau-sac/remove?id=${ms.id}" class="btn btn-danger">Remove</a>
-                    <a href="/fpoly-shop/mau-sac/view-update?id=${ms.id}" type="button"
+<%--                    <a href="/fpoly-shop/mau-sac/detail?id=${ms.id}" class="btn btn-success">Detail</a>--%>
+                    <a href="/admin/mau-sac/delete/${ms.id}" class="btn btn-danger">Remove</a>
+                    <a href="/admin/mau-sac/view-update/${ms.id}" type="button"
                        class="btn btn-warning">Update</a>
                 </td>
             </tr>

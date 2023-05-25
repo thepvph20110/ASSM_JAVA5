@@ -29,6 +29,7 @@ $("#form_hoc_ky_update").submit(function (event) {
     let mauSac = $('#mauSac').val().trim();
     let nsx = $('#nsx').val().trim();
     let id = $('#id_san_pham_update').val().trim();
+    var file = $('#image').val().trim();
 
     let check = true;
     if ($('#image')[0].files[0] === undefined) {
@@ -60,22 +61,26 @@ $("#form_hoc_ky_update").submit(function (event) {
         check = false;
     }
     if (check) {
+        var imageFile = document.getElementById('image').files[0];
+
         var formData = new FormData();
-        formData.append('img', $('#image')[0].files[0]);
+        formData.append('image', imageFile);
         formData.append('tenSP', tenSP);
         formData.append('giaBan', giaBan);
         formData.append('moTa', moTa);
-        formData.append('soLuong', soLuong);
+        formData.append('soLuongTon', soLuong);
         formData.append('mauSac', mauSac);
         formData.append('nsx', nsx);
         formData.append('id', id);
+        // formData.append('img', file);
+
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('POST', '/admin/update');
+        xhr.open('POST', '/admin/update-san-pham');
         xhr.onload = function () {
             if (xhr.status === 200) {
-                window.location.href = "/admin/quan-ly";
+                window.location.href = "/admin/quan-ly-san-pham";
             } else {
                 console.log('Lỗi trong quá trình gửi dữ liệu');
             }
